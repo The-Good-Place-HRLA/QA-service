@@ -39,6 +39,15 @@ var controllers = {
       .catch(err => {
         res.status(402).send(err)
       });
+  },
+  post: (req, res) => {
+    
+  },
+  edit: (req, res) => {
+
+  },
+  delete: (req, res) => {
+
   }
 };
 
