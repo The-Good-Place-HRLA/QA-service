@@ -5,6 +5,7 @@ var questions = require('./questions.js'); // real data from web
 var answers = require('./answers.js'); // real data from web
 const faker = require('faker');
 
+QApair.collection.drop();
 // for each of the 100 products
 for (var i = 1; i < 100; i++) {
   // set product ID for each and QA pairs

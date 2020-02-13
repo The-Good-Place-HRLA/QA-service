@@ -31,7 +31,7 @@ class App extends React.Component {
 
   getData(productID) {
     axios
-      .get(`http://localhost:8080/api/${productID}`)
+      .get(`http://localhost:8080/api/1`)
       .then((result) => this.setState({ QApairs: result.data[0].QApairs }))
       .catch((err) => console.error(err));
   };
