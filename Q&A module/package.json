@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./server/index.js",
     "build": "webpack -d -w",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "import": "mongoimport --db db --collection qapairs --file data.json --batchSize 100000 --jsonArray"
   },
   "author": "Christine",
   "license": "ISC",
