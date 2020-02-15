@@ -8,7 +8,7 @@
     "start": "nodemon ./server/index.js",
     "build": "webpack -d -w",
     "seed": "node database/seed.js",
-    "import": "mongoimport --db db --collection qapairs --file data.json --batchSize 100000 --jsonArray"
+    "import": "mongoimport --db db --collection qapairs --file database/data.json --batchSize 1 --jsonArray"
   },
   "author": "Christine",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "jquery": "^3.1.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "mongodb": "^3.5.3",
     "mongoose": "^5.8.10",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.2",

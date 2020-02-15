@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var QASchema = require('./schema.js')
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/QAdata', {useNewUrlParser: true})
+var db = mongoose.connect('mongodb://localhost/QAdata', {useNewUrlParser: true})
   .then(() => console.log('db connected'))
 
 // var db = mongoose.connection;
