@@ -5,20 +5,16 @@ var questions = require('./questions.js'); // real data from web
 var answers = require('./answers.js'); // real data from web
 const faker = require('faker');
 const fs = require('fs');
-const stream = fs.createWriteStream(__dirname + '/data.json');
-const stream2 = fs.createWriteStream(__dirname + '/data2.json');
+const stream = fs.createWriteStream(__dirname + '/data.csv');
 
-const writeData = async (writerStream, data) => {
+const writeData = (writerStream, data) => {
+  return new Promise((resolve) => {
     if (!writerStream.write(data)) {
-      await new Promise(resolve => writerStream.once('drain', resolve));
+      writerStream.once('drain', resolve)
+    } else {
+      resolve();
     }
-  // return new Promise((resolve) => {
-  //   if (!writerStream.write(data)) {
-  //     writerStream.once('drain', resolve)
-  //   } else {
-  //     resolve();
-  //   }
-  // });
+  });
 }
 
 const dataGen = async () => {
@@ -27,148 +23,103 @@ const dataGen = async () => {
 
   stream.write('[')
 
-  var max = 5000000;
-  // var max2 = 10000000;
+  var max = 10000;
   let i = 1;
+
+  var product = ''
   while (i <= max) {
     // for (var i = 1; i < 2000001; i++) {
     // set product ID for each and QA pairs
 
-    let product = {
-      productID: i,
-      QApairs: []
-    };
-    // randomize the quantity of QA pairs for each product
+    product += `${i},`
+    // let product = {
+    //   productID: i,
+    //   QApairs: []
+    // };
+
     let QApairsQty = faker.random.number({ min: 1, max: 3 });
     // randomly generate qa pairs until the desired quantity is reached
+
+    var questions = '&';
     for (var j = 0; j < QApairsQty; j++) {
       // random questions are generated below
-      var qa = {
-        number: j,
-        qNickname: faker.name.firstName(),
-        question: faker.hacker.phrase() + ' ' + faker.lorem.sentences(faker.random.number({ min: 1, max: 3 })),
-        qDate: faker.date.between('2017-01-01', '2020-02-02'),
-        qEmail: faker.internet.email(),
-        qLocation: faker.address.city() + ", " + faker.address.state(),
-        newQ: false,
-        ansCount: 1,
-        answers: []
-      };
-      // for each randomly generated question, the number of answers should be a random number from 1 to 5
       let ansQty = faker.random.number({ min: 1, max: 3 });
-      qa.ansCount = ansQty;
-      // and each question should be paired with the desired number of answers
+
+      var answers = "@";
+
       for (var k = 0; k < ansQty; k++) {
-        qa.answers.push({
-          aNickname: faker.name.firstName(),
-          answer: faker.hacker.phrase() + ' ' + faker.lorem.sentences(faker.random.number({ min: 1, max: 3 })),
-          aDate: faker.date.between('2017-01-01', '2020-02-02'),
-          aEmail: faker.internet.email(),
-          aLocation: faker.address.city() + ", " + faker.address.state(),
-          yes: faker.random.number({ min: 0, max: 20 }),
-          no: faker.random.number({ min: 0, max: 10 }),
-          inappropriate: faker.random.arrayElement(["yes", "no"]),
-          newAns: false
-        });
+
+
+        var answer = `~${faker.name.firstName()}~${faker.hacker.phrase() + ' ' + faker.lorem.sentences(faker.random.number({ min: 1, max: 3 }))}~${faker.date.between('2017-01-01', '2020-02-02')}~${faker.internet.email()}~${faker.address.city() + ", " + faker.address.state()}~${faker.random.number({ min: 0, max: 20 })}~${faker.random.number({ min: 0, max: 10 })}~${faker.random.arrayElement(["yes", "no"])}~false~`;
+        answers += answer + '@';
       }
 
-      product.QApairs.push(qa);
+
+
+      var qa = `|${j}|${faker.name.firstName()}|${faker.hacker.phrase() + ' ' + faker.lorem.sentences(faker.random.number({ min: 1, max: 3 }))}|${faker.date.between('2017-01-01', '2020-02-02')}|${faker.internet.email()}|${faker.address.city() + ", " + faker.address.state()}|false|1|${ansQty}|${answers}|`;
+
+      questions += qa + '&';
     }
 
-    product = JSON.stringify(product);
+    product += `${questions}%`;
+    // product.QApairs.push(questions);
+
+    // product = JSON.stringify(product);
+
     await writeData(stream, product);
 
-    if (i === max) {
-    await writeData(stream, ']')
-      stream.end();
+    if (i === 10000) {
+      await writeData(stream, '\n')
       var endTime = Date.now();
-      console.log((endTime - startTime)/1000);
+      console.log((endTime - startTime) / 1000);
+      // stream.write(']')
+        // .catch((err) => console.error(err))
+      stream.end()
       i++;
     } else {
-    await writeData(stream, ',');
+      await writeData(stream, '\n')
+      // stream.write(',')
+        // .catch((err) => console.error(err));
       i++;
     }
   }
-  return;
+
+
+  // records.push(product);
+  // QApair.create(product)
+  //   .then(() => {
+  //     console.log('database seeded');
+  //   })
+  //   .catch(err => console.error(err));
+
+
+  // const jsonString = JSON.stringify(records);
+  // stream.write(jsonString);
+
+
+  // fs.writeFile('./database/data.json', jsonString, err => {
+  //   if (err) {
+  //     console.log('error writing file', err);
+  //   } else {
+  //     console.log('Successfully wrote file');
+  //   }
+  // })
+  // module.exports = records;
+
+  // var endTime = Date.now();
+  // console.log('done');
+  // console.log((endTime - startTime)/1000);
 }
 
-const dataGen2 = async () => {
+dataGen();
 
-  var startTime = Date.now();
 
-  stream2.write('[')
 
-  var max = 10000000;
-  // var max2 = 10000000;
-  let i = 5000001;
-  while (i <= max) {
-    // for (var i = 1; i < 2000001; i++) {
-    // set product ID for each and QA pairs
 
-    let product = {
-      productID: i,
-      QApairs: []
-    };
-    // randomize the quantity of QA pairs for each product
-    let QApairsQty = faker.random.number({ min: 1, max: 3 });
-    // randomly generate qa pairs until the desired quantity is reached
-    for (var j = 0; j < QApairsQty; j++) {
-      // random questions are generated below
-      var qa = {
-        number: j,
-        qNickname: faker.name.firstName(),
-        question: faker.hacker.phrase() + ' ' + faker.lorem.sentences(faker.random.number({ min: 1, max: 3 })),
-        qDate: faker.date.between('2017-01-01', '2020-02-02'),
-        qEmail: faker.internet.email(),
-        qLocation: faker.address.city() + ", " + faker.address.state(),
-        newQ: false,
-        ansCount: 1,
-        answers: []
-      };
-      // for each randomly generated question, the number of answers should be a random number from 1 to 5
-      let ansQty = faker.random.number({ min: 1, max: 3 });
-      qa.ansCount = ansQty;
-      // and each question should be paired with the desired number of answers
-      for (var k = 0; k < ansQty; k++) {
-        qa.answers.push({
-          aNickname: faker.name.firstName(),
-          answer: faker.hacker.phrase() + ' ' + faker.lorem.sentences(faker.random.number({ min: 1, max: 3 })),
-          aDate: faker.date.between('2017-01-01', '2020-02-02'),
-          aEmail: faker.internet.email(),
-          aLocation: faker.address.city() + ", " + faker.address.state(),
-          yes: faker.random.number({ min: 0, max: 20 }),
-          no: faker.random.number({ min: 0, max: 10 }),
-          inappropriate: faker.random.arrayElement(["yes", "no"]),
-          newAns: false
-        });
-      }
 
-      product.QApairs.push(qa);
-    }
 
-    product = JSON.stringify(product);
-    await writeData(stream2, product);
 
-    if (i === max) {
-    await writeData(stream2, ']')
-      stream2.end();
-      var endTime = Date.now();
-      console.log((endTime - startTime)/1000);
-      i++;
-    } else {
-    await writeData(stream2, ',');
-      i++;
-    }
-  }
-  return;
-}
 
-const writeJson = async () => {
-  await dataGen();
-  await dataGen2();
-}
-
-writeJson();
 
 
 // ====================================== OLD CODE BELOW ======================================
