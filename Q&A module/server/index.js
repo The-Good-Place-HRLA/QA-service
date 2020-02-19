@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const router = require('./router.js');
-const port = 8080;
+const port = 8000;
 
 
 const app = express();

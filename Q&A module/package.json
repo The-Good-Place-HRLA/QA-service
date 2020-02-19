@@ -5,10 +5,12 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./server/index.js",
+    "start": "nodemon --max-old-space-size=8192 ./server/index.js",
     "build": "webpack -d -w",
-    "seed": "node database/seed.js",
-    "import": "mongoimport --db db --collection qapairs --file data.json --batchSize 100000 --jsonArray"
+    "seed1": "node --max-old-space-size=8192 database/seed1.js",
+    "seed2": "node --max-old-space-size=8192 database/seed2.js",
+    "import1": "mongoimport --db db --collection qapairs --type tsv --file database/data1.tsv --batchSize 100000 --headerline",
+    "import2": "mongoimport --db db --collection qapairs --type tsv --file database/data2.tsv --batchSize 100000 --headerline"
   },
   "author": "Christine",
   "license": "ISC",
@@ -31,6 +33,7 @@
     "jquery": "^3.1.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
+    "mongodb": "^3.5.3",
     "mongoose": "^5.8.10",
     "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
