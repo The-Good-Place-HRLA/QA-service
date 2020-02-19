@@ -1,2 +1,4 @@
 node_modules/
-database/data.json
+database/data1.tsv
+database/data2.tsv
+artifacts/

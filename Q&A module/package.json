@@ -5,11 +5,12 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./server/index.js",
+    "start": "nodemon --max-old-space-size=8192 ./server/index.js",
     "build": "webpack -d -w",
-    "seed": "node --max-old-space-size=8192 database/seed.js",
-    "import": "mongoimport --db db --collection qapairs --file database/data.json --batchSize 100000 --jsonArray",
-    "import2": "mongoimport --db db --collection qapairs --file database/data2.json --batchSize 100000 --jsonArray"
+    "seed1": "node --max-old-space-size=8192 database/seed1.js",
+    "seed2": "node --max-old-space-size=8192 database/seed2.js",
+    "import1": "mongoimport --db db --collection qapairs --type tsv --file database/data1.tsv --batchSize 100000 --headerline",
+    "import2": "mongoimport --db db --collection qapairs --type tsv --file database/data2.tsv --batchSize 100000 --headerline"
   },
   "author": "Christine",
   "license": "ISC",
