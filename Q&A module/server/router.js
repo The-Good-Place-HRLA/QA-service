@@ -12,6 +12,11 @@ router
   .get(controllers.get)
   .post(controllers.postQ)
   .put(controllers.postAns)
+  .delete(controllers.deleteItem)
+
+router
+  .route('/')
+  .post(controllers.postItem)
 
 
 

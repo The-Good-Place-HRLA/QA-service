@@ -1,4 +1,6 @@
 node_modules/
 database/data1.tsv
 database/data2.tsv
+database/data3.txt
+database/data4.txt
 artifacts/
