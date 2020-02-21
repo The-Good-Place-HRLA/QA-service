@@ -3,18 +3,36 @@ const QApair = require('./');
 var dbHelpers = {
   get: (id) => {
     return QApair.find({ productID:id })
-        .then((data) => {
-          return sortByHelpful(data);
-        })
   },
   postQ: (id, newQuestion) => {
-    return QApair.findOneAndUpdate({ productID:id }, {$push: {QApairs: newQuestion}});
+
+    return QApair.find({ productID: id });
+    // return QApair.find({ productID: id })
+    //   .then((data) => {
+    //     var questions = JSON.parse(data[0].QApairs);
+    //     questions.push(newQuestion);
+    //     questions = JSON.stringify(questions);
+    //     return QApair.findOneAndUpdate({ productID: id }, { QApairs: questions });
+    //   })
+    // return QApair.findOneAndUpdate({ productID:id }, {$push: {QApairs: newQuestion}});
   },
   postAns: (id, num, newAns) => {
     console.log(id)
     console.log(num)
     console.log(newAns)
+    // return QApair.find({ productID: id })
+    //   .then((data) => {
+    //     var questions = JSON.parse(data[0].QApairs);
+    //     console.log(questions);
+    //   })
+    //   .catch((err) => )
     return QApair.findOneAndUpdate({ "productID":id, "QApairs.number": num }, {$push: {"QApairs.$.answers": newAns}});
+  },
+  postItem: (productID, QApairs) => {
+    return QApair.create({ productID, QApairs });
+  },
+  deleteItem: (productID) => {
+    return QApair.findOneAndDelete({ productID });
   },
   sort: (id, category) => {
     if (category === 'newestQ') {
