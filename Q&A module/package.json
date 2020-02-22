@@ -11,6 +11,9 @@
     "seed2": "node --max-old-space-size=8192 database/seed2.js",
     "seed3": "node --max-old-space-size=8192 database/seed3.js",
     "seed4": "node --max-old-space-size=8192 database/seed4.js",
+    "seedproducts": "node --max-old-space-size=8192 database/seedproducts.js",
+    "seedQA1": "node --max-old-space-size=8192 database/seedQA1.js",
+    "seedQA2": "node --max-old-space-size=8192 database/seedQA2.js",
     "import1": "mongoimport --db QAdata --collection qapairs --type tsv --file database/data1.tsv --batchSize 100000 --headerline",
     "import2": "mongoimport --db QAdata --collection qapairs --type tsv --file database/data2.tsv --batchSize 100000 --headerline"
   },
