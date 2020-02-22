@@ -18,8 +18,8 @@ const dataGen = async (Qstream, Astream, start, end) => {
 
   var max = end;
   let i = start;
-  let j = 1;
-  let n = 1;
+  let j = 5000001;
+  let n = 10001143;
 
   while (i <= max) {
     // randomize the quantity of QA pairs for each product

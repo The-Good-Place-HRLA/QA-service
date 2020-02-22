@@ -8,6 +8,8 @@ const writeData = async (writerStream, data) => {
     await new Promise(resolve => writerStream.once('drain', resolve));
   }
 }
+var j = 1;
+var n = 1;
 
 const dataGen = async (Qstream, Astream, start, end) => {
 
@@ -18,8 +20,8 @@ const dataGen = async (Qstream, Astream, start, end) => {
 
   var max = end;
   let i = start;
-  let j = 1;
-  let n = 1;
+  // var j = 1;
+  // var n = 1;
 
   while (i <= max) {
     // randomize the quantity of QA pairs for each product
@@ -68,10 +70,20 @@ const dataGen = async (Qstream, Astream, start, end) => {
       await Astream.end();
       var endTime = Date.now();
       console.log((endTime - startTime) / 1000);
+
+      console.log(j);
+      console.log(n);
     }
     i++;
   }
+
   return;
 }
 
 dataGen(stream1, stream2, 1, 5000000);
+
+
+
+ 
+
+
