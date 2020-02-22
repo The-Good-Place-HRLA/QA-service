@@ -80,7 +80,9 @@ const dataGen = async (Qstream, Astream, start, end) => {
   return;
 }
 
-dataGen(stream1, stream2, 1, 5000000);
+dataGen(stream1, stream2, 1, 5000000)
+
+
 
 
 

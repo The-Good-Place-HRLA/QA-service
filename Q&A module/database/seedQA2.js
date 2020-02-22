@@ -3,6 +3,7 @@ const fs = require('fs');
 const stream1 = fs.createWriteStream(__dirname + '/dataquestions2.csv');
 const stream2 = fs.createWriteStream(__dirname + '/dataanswers2.csv');
 
+
 const writeData = async (writerStream, data) => {
   if (!writerStream.write(data)) {
     await new Promise(resolve => writerStream.once('drain', resolve));
@@ -19,7 +20,7 @@ const dataGen = async (Qstream, Astream, start, end) => {
   var max = end;
   let i = start;
   let j = 5000001;
-  let n = 10001143;
+  let n = null;
 
   while (i <= max) {
     // randomize the quantity of QA pairs for each product
