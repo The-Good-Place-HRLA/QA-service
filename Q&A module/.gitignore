@@ -8,3 +8,9 @@ database/dataanswers2.csv
 database/dataquestions1.csv
 database/dataquestions2.csv
 artifacts/
+.DS_Store
+.idea
+.vagrant
+VagrantFile
+bower_components/
+QA.pem
