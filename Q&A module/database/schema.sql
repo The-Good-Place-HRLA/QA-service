@@ -1,10 +1,33 @@
-DROP DATABASE IF EXISTS QA_module;
+DROP DATABASE IF EXISTS qa_module;
 
-CREATE DATABASE QA_module;
+CREATE DATABASE qa_module;
 
-\c QA_module;
+\c qa_module;
 
-CREATE TABLE products (
-  productID INT
+CREATE TABLE questions (
+  qNumber INTEGER NOT NULL PRIMARY KEY,
+  qNickname VARCHAR(50) NOT NULL,
+  question VARCHAR(250) NOT NULL,
+  qDate VARCHAR(80) NOT NULL,
+  qEmail VARCHAR(50) NOT NULL,
+  qLocation VARCHAR(50) NOT NULL,
+  newQ VARCHAR(10) NOT NULL,
+  ansCount SMALLINT NOT NULL,
+  productID INTEGER NOT NULL
+);
+
+CREATE TABLE answers (
+  aNumber INTEGER NOT NULL PRIMARY KEY,
+  aNickname VARCHAR(50) NOT NULL,
+  answer VARCHAR(250) NOT NULL,
+  aDate VARCHAR(80) NOT NULL,
+  aEmail VARCHAR(50) NOT NULL,
+  aLocation VARCHAR(50) NOT NULL,
+  aYes SMALLINT NOT NULL,
+  aNo SMALLINT NOT NULL,
+  inappropriate VARCHAR(10) NOT NULL,
+  newAns VARCHAR(10) NOT NULL,
+  qNumber INTEGER NOT NULL,
+  FOREIGN KEY (qNumber) REFERENCES questions(qNumber)
 );
 
