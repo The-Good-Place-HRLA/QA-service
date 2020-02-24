@@ -72,4 +72,4 @@ const dataGen = async (stream, start, end) => {
   return;
 }
 
-dataGen(stream1, 1, 5000000);
+dataGen(stream1, 1, 500);
