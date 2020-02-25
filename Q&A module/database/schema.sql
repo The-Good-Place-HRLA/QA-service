@@ -5,29 +5,29 @@ CREATE DATABASE qa_module;
 \c qa_module;
 
 CREATE TABLE questions (
-  qNumber INTEGER NOT NULL PRIMARY KEY,
-  qNickname VARCHAR(50) NOT NULL,
+  qnumber INTEGER NOT NULL PRIMARY KEY,
+  qnickname VARCHAR(50) NOT NULL,
   question VARCHAR(250) NOT NULL,
-  qDate VARCHAR(80) NOT NULL,
-  qEmail VARCHAR(50) NOT NULL,
-  qLocation VARCHAR(50) NOT NULL,
-  newQ VARCHAR(10) NOT NULL,
-  ansCount SMALLINT NOT NULL,
-  productID INTEGER NOT NULL
+  qdate VARCHAR(80) NOT NULL,
+  qemail VARCHAR(50) NOT NULL,
+  qlocation VARCHAR(50) NOT NULL,
+  newq VARCHAR(10) NOT NULL,
+  anscount SMALLINT NOT NULL,
+  productid INTEGER NOT NULL
 );
 
 CREATE TABLE answers (
-  aNumber INTEGER NOT NULL PRIMARY KEY,
-  aNickname VARCHAR(50) NOT NULL,
+  anumber INTEGER NOT NULL PRIMARY KEY,
+  anickname VARCHAR(50) NOT NULL,
   answer VARCHAR(250) NOT NULL,
-  aDate VARCHAR(80) NOT NULL,
-  aEmail VARCHAR(50) NOT NULL,
-  aLocation VARCHAR(50) NOT NULL,
-  aYes SMALLINT NOT NULL,
-  aNo SMALLINT NOT NULL,
+  adate VARCHAR(80) NOT NULL,
+  aemail VARCHAR(50) NOT NULL,
+  alocation VARCHAR(50) NOT NULL,
+  ayes SMALLINT NOT NULL,
+  ano SMALLINT NOT NULL,
   inappropriate VARCHAR(10) NOT NULL,
-  newAns VARCHAR(10) NOT NULL,
-  qNumber INTEGER NOT NULL,
-  FOREIGN KEY (qNumber) REFERENCES questions(qNumber)
+  newans VARCHAR(10) NOT NULL,
+  qnumber INTEGER NOT NULL,
+  FOREIGN KEY (qnumber) REFERENCES questions(qnumber)
 );
 
