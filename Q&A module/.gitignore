@@ -1,12 +1,5 @@
 node_modules/
-database/data1.tsv
-database/data2.tsv
-database/data3.txt
-database/data4.txt
-database/dataanswers1.csv
-database/dataanswers2.csv
-database/dataquestions1.csv
-database/dataquestions2.csv
+data/
 artifacts/
 .DS_Store
 .idea
