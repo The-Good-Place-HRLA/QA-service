@@ -14,8 +14,8 @@ const dataGen = async (Qstream, Astream, start, end) => {
 
   var startTime = Date.now();
 
-  Qstream.write('qNumber\tqNickname\tquestion\tqDate\tqEmail\tqLocation\tnewQ\tansCount\tproductID\n');
-  Astream.write('aNumber\taNickname\tanswer\taDate\taEmail\taLocation\taYes\taNo\tinappropriate\tnewAns\tqNumber\n');
+  Qstream.write('qnumber\tqnickname\tquestion\tqdate\tqemail\tqlocation\tnewq\tanscount\tproductid\n');
+  Astream.write('anumber\tanickname\tanswer\tadate\taemail\talocation\tayes\tano\tinappropriate\tnewans\tqnumber\n');
 
   var max = end;
   let i = start;
