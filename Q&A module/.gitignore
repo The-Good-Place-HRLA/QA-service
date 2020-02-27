@@ -6,4 +6,4 @@ artifacts/
 .vagrant
 VagrantFile
 bower_components/
-QA.pem
+keypairs/

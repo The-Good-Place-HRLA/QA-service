@@ -12,7 +12,17 @@
     "seedQA1": "node --max-old-space-size=8192 database/seedQA1.js",
     "seedQA2": "node --max-old-space-size=8192 database/seedQA2.js",
     "import1": "mongoimport --db QAdata --collection qapairs --type tsv --file database/data1.tsv --batchSize 100000 --headerline",
-    "import2": "mongoimport --db QAdata --collection qapairs --type tsv --file database/data2.tsv --batchSize 100000 --headerline"
+    "import2": "mongoimport --db QAdata --collection qapairs --type tsv --file database/data2.tsv --batchSize 100000 --headerline",
+    "database": "SSH -i keypairs/QA.pem ubuntu@ec2-13-56-17-78.us-west-1.compute.amazonaws.com",
+    "server1": "SSH -i keypairs/server1.pem ubuntu@ec2-18-144-141-161.us-west-1.compute.amazonaws.com",
+    "server2": "SSH -i keypairs/server1.pem ubuntu@ec2-18-144-137-132.us-west-1.compute.amazonaws.com",
+    "server3": "SSH -i keypairs/server1.pem ubuntu@ec2-52-9-232-250.us-west-1.compute.amazonaws.com",
+    "server4": "SSH -i keypairs/server1.pem ubuntu@ec2-13-57-204-37.us-west-1.compute.amazonaws.com",
+    "server5": "SSH -i keypairs/server1.pem ubuntu@ec2-54-153-23-208.us-west-1.compute.amazonaws.com",
+    "server6": "SSH -i keypairs/server1.pem ubuntu@ec2-54-183-197-23.us-west-1.compute.amazonaws.com",
+    "server7": "SSH -i keypairs/server1.pem ubuntu@ec2-13-52-217-151.us-west-1.compute.amazonaws.com",
+    "server8": "SSH -i keypairs/server1.pem ubuntu@ec2-54-183-210-149.us-west-1.compute.amazonaws.com",
+    "proxy": "SSH -i keypairs/server1.pem ubuntu@ec2-13-56-29-83.us-west-1.compute.amazonaws.com"
   },
   "author": "Christine",
   "license": "ISC",
